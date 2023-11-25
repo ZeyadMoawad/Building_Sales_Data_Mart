@@ -1,0 +1,710 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/29/2023 11:16:56 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-ERHQ26V"
+  DTS:CreatorName="DESKTOP-ERHQ26V\ZiaD"
+  DTS:DTSID="{02C750BC-990F-425C-A92B-1031506F75C3}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5314.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Dim Territory ETL"
+  DTS:PackageType="5"
+  DTS:VersionBuild="28"
+  DTS:VersionGUID="{85EE0779-F6E2-4902-BE32-1156F7544126}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFT - Dim Territory"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{0C630D50-5525-4E47-BF2A-CFA9DBA36EA9}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT - Dim Territory"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT - Dim Territory\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT - Dim Territory\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - Dim Territory\Data Conversion.Inputs[Data Conversion Input].Columns[country_code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="12"
+                      cachedName="country_code"
+                      lineageId="Package\DFT - Dim Territory\Territory Table.Outputs[OLE DB Source Output].Columns[country_code]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - Dim Territory\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\DFT - Dim Territory\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Dim Territory\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of country_code]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="12"
+                      lineageId="Package\DFT - Dim Territory\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of country_code]"
+                      name="Copy of country_code"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DFT - Dim Territory\Territory Table.Outputs[OLE DB Source Output].Columns[country_code]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - Dim Territory\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\DFT - Dim Territory\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Dim Territory\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Dim Territory\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Dim Territory\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Dim Territory\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - Dim Territory\DRV - Source System Code"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="DRV - Source System Code"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT - Dim Territory\DRV - Source System Code.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - Dim Territory\DRV - Source System Code.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DFT - Dim Territory\DRV - Source System Code.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Dim Territory\DRV - Source System Code.Outputs[Derived Column Output].Columns[system_scourse_code]"
+                      dataType="i1"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DFT - Dim Territory\DRV - Source System Code.Outputs[Derived Column Output].Columns[system_scourse_code]"
+                      name="system_scourse_code"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_I1)1</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_I1)1</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - Dim Territory\DRV - Source System Code.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DFT - Dim Territory\DRV - Source System Code.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Dim Territory\DRV - Source System Code.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Dim Territory\DRV - Source System Code.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Dim Territory\DRV - Source System Code.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Dim Territory\DRV - Source System Code.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - Dim Territory\OLEDB Load Dim-Territory"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLEDB Load Dim-Territory"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[dim_territory]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - Dim Territory\OLEDB Load Dim-Territory.Connections[OleDbConnection]"
+                  connectionManagerID="{8D4C575F-15A9-4F6F-A68F-C363E4A9DF46}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Destinations DataBase]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT - Dim Territory\OLEDB Load Dim-Territory.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - Dim Territory\OLEDB Load Dim-Territory.Inputs[OLE DB Destination Input].Columns[territory_id]"
+                      cachedDataType="i4"
+                      cachedName="territory_id"
+                      externalMetadataColumnId="Package\DFT - Dim Territory\OLEDB Load Dim-Territory.Inputs[OLE DB Destination Input].ExternalColumns[territory_id]"
+                      lineageId="Package\DFT - Dim Territory\Territory Table.Outputs[OLE DB Source Output].Columns[territory_id]" />
+                    <inputColumn
+                      refId="Package\DFT - Dim Territory\OLEDB Load Dim-Territory.Inputs[OLE DB Destination Input].Columns[territory_name]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="territory_name"
+                      externalMetadataColumnId="Package\DFT - Dim Territory\OLEDB Load Dim-Territory.Inputs[OLE DB Destination Input].ExternalColumns[territory_name]"
+                      lineageId="Package\DFT - Dim Territory\Territory Table.Outputs[OLE DB Source Output].Columns[territory_name]" />
+                    <inputColumn
+                      refId="Package\DFT - Dim Territory\OLEDB Load Dim-Territory.Inputs[OLE DB Destination Input].Columns[territory_group]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="territory_group"
+                      externalMetadataColumnId="Package\DFT - Dim Territory\OLEDB Load Dim-Territory.Inputs[OLE DB Destination Input].ExternalColumns[territory_group]"
+                      lineageId="Package\DFT - Dim Territory\Territory Table.Outputs[OLE DB Source Output].Columns[territory_group]" />
+                    <inputColumn
+                      refId="Package\DFT - Dim Territory\OLEDB Load Dim-Territory.Inputs[OLE DB Destination Input].Columns[system_scourse_code]"
+                      cachedDataType="i1"
+                      cachedName="system_scourse_code"
+                      externalMetadataColumnId="Package\DFT - Dim Territory\OLEDB Load Dim-Territory.Inputs[OLE DB Destination Input].ExternalColumns[source_system_code]"
+                      lineageId="Package\DFT - Dim Territory\DRV - Source System Code.Outputs[Derived Column Output].Columns[system_scourse_code]" />
+                    <inputColumn
+                      refId="Package\DFT - Dim Territory\OLEDB Load Dim-Territory.Inputs[OLE DB Destination Input].Columns[Copy of country_code]"
+                      cachedDataType="wstr"
+                      cachedLength="12"
+                      cachedName="Copy of country_code"
+                      externalMetadataColumnId="Package\DFT - Dim Territory\OLEDB Load Dim-Territory.Inputs[OLE DB Destination Input].ExternalColumns[territory_country]"
+                      lineageId="Package\DFT - Dim Territory\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of country_code]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT - Dim Territory\OLEDB Load Dim-Territory.Inputs[OLE DB Destination Input].ExternalColumns[territory_key]"
+                      dataType="i4"
+                      name="territory_key" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Dim Territory\OLEDB Load Dim-Territory.Inputs[OLE DB Destination Input].ExternalColumns[territory_id]"
+                      dataType="i4"
+                      name="territory_id" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Dim Territory\OLEDB Load Dim-Territory.Inputs[OLE DB Destination Input].ExternalColumns[territory_name]"
+                      dataType="wstr"
+                      length="50"
+                      name="territory_name" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Dim Territory\OLEDB Load Dim-Territory.Inputs[OLE DB Destination Input].ExternalColumns[territory_country]"
+                      dataType="wstr"
+                      length="400"
+                      name="territory_country" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Dim Territory\OLEDB Load Dim-Territory.Inputs[OLE DB Destination Input].ExternalColumns[territory_group]"
+                      dataType="wstr"
+                      length="50"
+                      name="territory_group" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Dim Territory\OLEDB Load Dim-Territory.Inputs[OLE DB Destination Input].ExternalColumns[source_system_code]"
+                      dataType="ui1"
+                      name="source_system_code" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - Dim Territory\OLEDB Load Dim-Territory.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DFT - Dim Territory\OLEDB Load Dim-Territory.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Dim Territory\OLEDB Load Dim-Territory.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Dim Territory\OLEDB Load Dim-Territory.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Dim Territory\OLEDB Load Dim-Territory.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Dim Territory\OLEDB Load Dim-Territory.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - Dim Territory\Territory Table"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Territory Table"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+	TerritoryID AS territory_id,
+	Name AS territory_name,
+	case 
+		when CountryRegionCode = 'US' then 'Untite State'
+		when CountryRegionCode = 'CA' then 'Canada'
+		when CountryRegionCode = 'FR' then 'France'
+		when CountryRegionCode = 'DE' then 'Denmark'
+		when CountryRegionCode = 'AU' then 'Australia'
+		when CountryRegionCode = 'GB' then 'Germany'
+		Else 'Unknow' 
+		end    As country_code ,
+	[Group] AS territory_group
+FROM Sales.SalesTerritory</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - Dim Territory\Territory Table.Connections[OleDbConnection]"
+                  connectionManagerID="{EA6D2A9B-BE36-4BBF-AE3E-CC34953FD794}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Source DataBase]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT - Dim Territory\Territory Table.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Dim Territory\Territory Table.Outputs[OLE DB Source Output].Columns[territory_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Dim Territory\Territory Table.Outputs[OLE DB Source Output].ExternalColumns[territory_id]"
+                      lineageId="Package\DFT - Dim Territory\Territory Table.Outputs[OLE DB Source Output].Columns[territory_id]"
+                      name="territory_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Dim Territory\Territory Table.Outputs[OLE DB Source Output].Columns[territory_name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Dim Territory\Territory Table.Outputs[OLE DB Source Output].ExternalColumns[territory_name]"
+                      length="50"
+                      lineageId="Package\DFT - Dim Territory\Territory Table.Outputs[OLE DB Source Output].Columns[territory_name]"
+                      name="territory_name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Dim Territory\Territory Table.Outputs[OLE DB Source Output].Columns[country_code]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Dim Territory\Territory Table.Outputs[OLE DB Source Output].ExternalColumns[country_code]"
+                      length="12"
+                      lineageId="Package\DFT - Dim Territory\Territory Table.Outputs[OLE DB Source Output].Columns[country_code]"
+                      name="country_code"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Dim Territory\Territory Table.Outputs[OLE DB Source Output].Columns[territory_group]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Dim Territory\Territory Table.Outputs[OLE DB Source Output].ExternalColumns[territory_group]"
+                      length="50"
+                      lineageId="Package\DFT - Dim Territory\Territory Table.Outputs[OLE DB Source Output].Columns[territory_group]"
+                      name="territory_group"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT - Dim Territory\Territory Table.Outputs[OLE DB Source Output].ExternalColumns[territory_id]"
+                      dataType="i4"
+                      name="territory_id" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Dim Territory\Territory Table.Outputs[OLE DB Source Output].ExternalColumns[territory_name]"
+                      dataType="wstr"
+                      length="50"
+                      name="territory_name" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Dim Territory\Territory Table.Outputs[OLE DB Source Output].ExternalColumns[country_code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="12"
+                      name="country_code" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Dim Territory\Territory Table.Outputs[OLE DB Source Output].ExternalColumns[territory_group]"
+                      dataType="wstr"
+                      length="50"
+                      name="territory_group" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT - Dim Territory\Territory Table.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Dim Territory\Territory Table.Outputs[OLE DB Source Error Output].Columns[territory_id]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Dim Territory\Territory Table.Outputs[OLE DB Source Error Output].Columns[territory_id]"
+                      name="territory_id" />
+                    <outputColumn
+                      refId="Package\DFT - Dim Territory\Territory Table.Outputs[OLE DB Source Error Output].Columns[territory_name]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\DFT - Dim Territory\Territory Table.Outputs[OLE DB Source Error Output].Columns[territory_name]"
+                      name="territory_name" />
+                    <outputColumn
+                      refId="Package\DFT - Dim Territory\Territory Table.Outputs[OLE DB Source Error Output].Columns[country_code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="12"
+                      lineageId="Package\DFT - Dim Territory\Territory Table.Outputs[OLE DB Source Error Output].Columns[country_code]"
+                      name="country_code" />
+                    <outputColumn
+                      refId="Package\DFT - Dim Territory\Territory Table.Outputs[OLE DB Source Error Output].Columns[territory_group]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\DFT - Dim Territory\Territory Table.Outputs[OLE DB Source Error Output].Columns[territory_group]"
+                      name="territory_group" />
+                    <outputColumn
+                      refId="Package\DFT - Dim Territory\Territory Table.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Dim Territory\Territory Table.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Dim Territory\Territory Table.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Dim Territory\Territory Table.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT - Dim Territory.Paths[Data Conversion Output]"
+              endId="Package\DFT - Dim Territory\OLEDB Load Dim-Territory.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\DFT - Dim Territory\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\DFT - Dim Territory.Paths[Derived Column Output]"
+              endId="Package\DFT - Dim Territory\Data Conversion.Inputs[Data Conversion Input]"
+              name="Derived Column Output"
+              startId="Package\DFT - Dim Territory\DRV - Source System Code.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DFT - Dim Territory.Paths[OLE DB Source Output]"
+              endId="Package\DFT - Dim Territory\DRV - Source System Code.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\DFT - Dim Territory\Territory Table.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="171,42"
+          Id="Package\DFT - Dim Territory"
+          TopLeft="518,90" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DFT - Dim Territory">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="149,42"
+          Id="Package\DFT - Dim Territory\Territory Table"
+          TopLeft="502,22" />
+        <NodeLayout
+          Size="206,42"
+          Id="Package\DFT - Dim Territory\DRV - Source System Code"
+          TopLeft="502,104" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\DFT - Dim Territory\Data Conversion"
+          TopLeft="522,193" />
+        <NodeLayout
+          Size="204,42"
+          Id="Package\DFT - Dim Territory\OLEDB Load Dim-Territory"
+          TopLeft="535,278" />
+        <EdgeLayout
+          Id="Package\DFT - Dim Territory.Paths[Data Conversion Output]"
+          TopLeft="600,235">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="37,43"
+              Start="0,0"
+              End="37,35.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.5"
+                    Point2="0,21.5"
+                    Point3="4,21.5" />
+                  <mssgle:LineSegment
+                    End="33,21.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="33,21.5"
+                    Point2="37,21.5"
+                    Point3="37,25.5" />
+                  <mssgle:LineSegment
+                    End="37,35.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - Dim Territory.Paths[OLE DB Source Output]"
+          TopLeft="576.5,64">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="28.5,40"
+              Start="0,0"
+              End="28.5,32.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16"
+                    Point2="0,20"
+                    Point3="4,20" />
+                  <mssgle:LineSegment
+                    End="24.5,20" />
+                  <mssgle:CubicBezierSegment
+                    Point1="24.5,20"
+                    Point2="28.5,20"
+                    Point3="28.5,24" />
+                  <mssgle:LineSegment
+                    End="28.5,32.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - Dim Territory.Paths[Derived Column Output]"
+          TopLeft="602.5,146">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,47"
+              Start="0,0"
+              End="0,39.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - Dim Territory\Territory Table">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - Dim Territory\OLEDB Load Dim-Territory">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
