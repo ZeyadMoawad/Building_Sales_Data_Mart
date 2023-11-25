@@ -7,7 +7,7 @@ A data mart is a focused and purpose-built subset of a data warehouse, designed 
 ## Key Project Tasks:
 - Data Extraction from AdventureWorks2022 (OLTP)
   
-- Cleanse and preprocess extracted data to ensure data quality.
+- Cleanse and preprocess extracted data to ensure data quality
   
 - Design the star schema for data mart.
   
