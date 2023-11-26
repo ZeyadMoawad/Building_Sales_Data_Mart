@@ -13,7 +13,7 @@ A data mart is a focused and purpose-built subset of a data warehouse, designed 
   
 - Develop ETL (Extract, Transform, Load) processes using SSIS or other ETL tools.
 # Data source:
- (AdventureWorks Database) [fds]
+ [AdventureWorks Database](https://github.com/Microsoft/sql-server-samples/releases/download/adventureworks/AdventureWorks2022.bak)
  # Steps
  Data Modeling (Star Schema)
  
